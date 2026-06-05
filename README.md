@@ -80,29 +80,6 @@ Because Stage 1 and Stage 2 differ architecturally, the lower latency of the
 pipeline family should not be described as the result of merely adding pipeline
 pragmas to `cnn20_reference`.
 
-## Key Findings
-
-The DDR benchmark demonstrates a working userspace-to-DDR-to-FPGA-to-DDR path
-without DMA, using AXI-Lite control and HLS `m_axi` memory access. It is the
-appropriate benchmark for memory-path bandwidth in this project.
-
-The CNN benchmarks are compute-oriented and operate on a small `32x32x3` int8
-input image. Their reported `bandwidth_MB_s` values should not be interpreted as
-peak DDR bandwidth. For memory bandwidth, use `ddr_benchmark`.
-
-Within the pipeline benchmark family, `cnn20_pipeline` and
-`cnn20_pipeline_unroll2` produce virtually identical latency and identical
-resource utilization. The measured difference is below practical measurement
-significance, and the result strongly suggests that explicit unroll2 did not
-change the generated hardware beyond the pipeline design.
-
-## Documentation
-
-- [benchmark_summary.md](benchmark_summary.md): compact result summary.
-- [benchmark_report.md](benchmark_report.md): publication-style analysis,
-  methodology, tables, discussion, lessons learned, and future work.
-- [benchmark_analysis.md](benchmark_analysis.md): technical analysis of the
-  benchmark families and interpretation risks.
 
 ## Scope
 
